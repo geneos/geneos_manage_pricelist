@@ -6,6 +6,7 @@
             <form string="Importar listas de precios">
                 <group>
                     <field name="data" filename="import_filename"/>
+                    <field name="update_meli" />
                 </group>
                 <footer>
                     <button

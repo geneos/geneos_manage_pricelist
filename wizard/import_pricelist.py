@@ -13,6 +13,7 @@ class WizardImportPricelist(models.TransientModel):
     _name = "wizard.import.pricelist.csv"
     _description = "Wizard Import PriceList CSV"
 
+    update_meli = fields.Boolean('Actualizar Precios en MELI')
     data = fields.Binary('Archivo', required=True)
     import_filename = fields.Char(
         string='Import CSV Filename', size=128, default='')
@@ -53,6 +54,12 @@ class WizardImportPricelist(models.TransientModel):
                     list_of_failed_record += line
         except Exception as e:
             list_of_failed_record += str(e)
+
+        #actualizo en ML el precio
+        if self.update_meli:
+            company = self.env.user.company_id
+            apistate = self.env['meli.util'].get_new_instance(company)
+            company.cron_meli_process_post_price(meli=apistate)
 
         return {
             'type': 'ir.actions.act_window',
