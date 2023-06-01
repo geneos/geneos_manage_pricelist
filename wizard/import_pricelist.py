@@ -62,7 +62,7 @@ class WizardImportPricelist(models.TransientModel):
             #company = self.env.user.company_id
             #apistate = self.env['meli.util'].get_new_instance(company)
             #company.cron_meli_process_post_price(meli=apistate)
-            producto_item = self.env['product.product'].search(productos_importados)
+            producto_item = self.env['product.product'].browse(productos_importados)
             for item in producto_item:
                 item.product_post_price()
 
