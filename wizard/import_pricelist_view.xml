@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="wizard_import_pricelist_csv" model="ir.ui.view">
+        <field name="model">wizard.import.pricelist.csv</field>
+        <field name="arch" type="xml">
+            <form string="Importar listas de precios">
+                <group>
+                    <field name="data" filename="import_filename"/>
+                </group>
+                <footer>
+                    <button
+                            string="Importar Archivo"
+                            name="crear_archivo"
+                            type="object"
+                            class="oe_highlight"
+                        />
+
+                    <button string="Cancelar" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_import_pricelist_csv" model="ir.actions.act_window">
+        <field name="name">Importar listas de precios</field>
+        <field name="res_model">wizard.import.pricelist.csv</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_import_pricelist_csv" />
+        <field name="target">new</field>
+    </record>
+
+
+    <menuitem
+        action="action_import_pricelist_csv"
+        id="menu_action_import_lista_precios"
+        parent="menu_of_exportador_listas_de_precios"
+        groups="product.group_sale_pricelist"
+        sequence="1"
+    />
+
+</odoo>

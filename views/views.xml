@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="geneos_manage_pricelist.list">
+      <field name="name">geneos_manage_pricelist list</field>
+      <field name="model">geneos_manage_pricelist.geneos_manage_pricelist</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="geneos_manage_pricelist.action_window">
+      <field name="name">geneos_manage_pricelist window</field>
+      <field name="res_model">geneos_manage_pricelist.geneos_manage_pricelist</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="geneos_manage_pricelist.action_server">
+      <field name="name">geneos_manage_pricelist server</field>
+      <field name="model_id" ref="model_geneos_manage_pricelist_geneos_manage_pricelist"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="geneos_manage_pricelist" id="geneos_manage_pricelist.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="geneos_manage_pricelist.menu_1" parent="geneos_manage_pricelist.menu_root"/>
+    <menuitem name="Menu 2" id="geneos_manage_pricelist.menu_2" parent="geneos_manage_pricelist.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="geneos_manage_pricelist.menu_1_list" parent="geneos_manage_pricelist.menu_1"
+              action="geneos_manage_pricelist.action_window"/>
+    <menuitem name="Server to list" id="geneos_manage_pricelist" parent="geneos_manage_pricelist.menu_2"
+              action="geneos_manage_pricelist.action_server"/>
+-->
+  </data>
+</odoo>

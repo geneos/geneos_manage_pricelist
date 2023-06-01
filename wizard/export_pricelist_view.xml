@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="wizard_export_pricelist_csv" model="ir.ui.view">
+        <field name="model">wizard.export.pricelist.csv</field>
+        <field name="arch" type="xml">
+            <form string="Exportar listas de precios">
+                <group>
+                    <field name="pricelist_id" />
+                    <field name="categ_ids" widget="many2many_tags" attrs=""/>
+                    <field name="data" filename="export_filename"/>
+
+                </group>
+                <footer>
+                    <button
+                            string="Exportar"
+                            name="crear_archivo"
+                            type="object"
+                            class="oe_highlight"
+                        />
+
+                    <button string="Cancelar" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_export_pricelist_csv" model="ir.actions.act_window">
+        <field name="name">Exportar listas de precios</field>
+        <field name="res_model">wizard.export.pricelist.csv</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_export_pricelist_csv" />
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="menu_of_exportador_listas_de_precios"
+        name="Mantenimiento de listas de precios"
+        parent="sale.product_menu_catalog"
+        sequence="99"
+        groups="product.group_sale_pricelist"
+    />
+
+    <menuitem
+        action="action_export_pricelist_csv"
+        id="menu_action_export_lista_precios"
+        parent="menu_of_exportador_listas_de_precios"
+        groups="product.group_sale_pricelist"
+        sequence="10"
+    />
+
+</odoo>
