@@ -25,6 +25,7 @@ class WizardImportPricelist(models.TransientModel):
         total_failed_record = 0
         list_of_failed_record = ''
         datafile = self.data
+        productos_importados = []
         try:
             file_path = tempfile.gettempdir() + '/import.csv'
             f = open(file_path, 'wb+')
@@ -48,6 +49,7 @@ class WizardImportPricelist(models.TransientModel):
                         ], limit=1)
                     if producto_item:
                         producto_item.write(valores)
+                        productos_importados.append(producto_item.product_id.id)
                     total_success_import_record += 1
                 except:
                     total_failed_record += 1
@@ -57,9 +59,14 @@ class WizardImportPricelist(models.TransientModel):
 
         #actualizo en ML el precio
         if self.update_meli:
-            company = self.env.user.company_id
-            apistate = self.env['meli.util'].get_new_instance(company)
-            company.cron_meli_process_post_price(meli=apistate)
+            #company = self.env.user.company_id
+            #apistate = self.env['meli.util'].get_new_instance(company)
+            #company.cron_meli_process_post_price(meli=apistate)
+            producto_item = self.env['product.product'].search(productos_importados)
+            for item in producto_item:
+                item.product_post_price()
+
+
 
         return {
             'type': 'ir.actions.act_window',
